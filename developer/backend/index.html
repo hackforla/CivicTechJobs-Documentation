@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://aveline-art.github.io/CivicTechJobs-Documentation/developer/backend/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Backend Architecture - CivicTechJobs Docs</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../../css/extra.css" rel="stylesheet">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../..">CivicTechJobs Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Roles <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web Developer</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="https://github.com/hackforla/CivicTechJobs/blob/main/CONTRIBUTING.md#welcome-to-the-civictechjobs-contributing-guide" class="dropdown-item">CONTRIBUTING.md</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Backend Architecture</a>
+</li>
+            
+<li>
+    <a href="../design-system/" class="dropdown-item">Design System Helper</a>
+</li>
+            
+<li>
+    <a href="../development-culture/" class="dropdown-item">Development Culture</a>
+</li>
+            
+<li>
+    <a href="../frontend/" class="dropdown-item">Frontend Architecture</a>
+</li>
+            
+<li>
+    <a href="../github/" class="dropdown-item">GitHub Architecture</a>
+</li>
+            
+<li>
+    <a href="../installation/" class="dropdown-item">Installation Instructions</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../resources/" class="nav-link">Resources</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="https://github.com/hackforla/CivicTechJobs" class="nav-link">CivicTechJobs Repo</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../design-system/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Aveline-art/CivicTechJobs-Documentation/" class="nav-link"><i class="fa fa-github"></i> GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#backend-architecture" class="nav-link">Backend Architecture</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#summary" class="nav-link">Summary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#overview-of-directories-and-files" class="nav-link">Overview of Directories and Files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#docker" class="nav-link">Docker</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#docker-composeyml" class="nav-link">docker-compose.yml</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-app-files" class="nav-link">Django App Files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-rest-framework-files" class="nav-link">Django REST Framework Files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#useful-commands" class="nav-link">Useful Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#additional-resources" class="nav-link">Additional Resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="backend-architecture">Backend Architecture</h1>
+<pre><code class="language-yml">├── .github/
+│   └── ISSUE_TEMPLATE/
+├── config/    # Backend
+├── docker/    # Backend
+├── frontend/    # Backend
+│   ├── migrations/    # Backend
+│   ├── src/
+│       ├── assets/
+│       ├── components/
+│       ├── pages/
+│       └── templates/
+│   ├── static/
+│       └── frontend/
+│   └── templates/
+│       └── frontend/
+├── server/    # Backend
+│   └── migrations/    # Backend
+└── &lt;loose files&gt;    # Backend
+</code></pre>
+<p><em><p style="text-align: center;">Overall project structure</p></em></p>
+<pre><code class="language-yml">├── config/
+│   ├── &lt;Django Project Files&gt;
+├── docker/
+│   ├── django
+│   └── webpack
+├── frontend/
+│   └── &lt;Django App Files&gt;
+├── server/
+│   ├── &lt;Django App Files&gt;
+│   └── &lt;RESTFramework Files&gt;
+├── .dockerignore
+├── docker-compose.yml
+├── manage.py 
+└── requirements.txt 
+</code></pre>
+<p><em><p style="text-align: center;">Backend Architecture</p></em></p>
+<h2 id="summary">Summary</h2>
+<p><strong>Backend Tech Stack</strong>: Django, DjangoRESTFramework, Docker</p>
+<p>The backend architecture is consists the <code>docker/</code> directory, the Django <code>config/</code> project, the <code>frontend/</code> and <code>server/</code> Django apps, and a couple of Django or Docker-related loose files. In addition to serving as part of our backend, the <code>frontend/</code> directory also serves our frontend architecture. More about the <code>frontend/</code> directory as it relates our frontend architecture can be found in our guide on <a href="../../developer/frontend/">Frontend Architecture</a>.</p>
+<h2 id="overview-of-directories-and-files">Overview of Directories and Files</h2>
+<ul>
+<li><strong>config/:</strong> houses the Django project files.<ul>
+<li><strong>&lt;Django Project Files>:</strong> More on the files in this directory can be found in <a href="https://docs.djangoproject.com/en/4.0/">Django's documentation</a>.</li>
+</ul>
+</li>
+<li><strong>docker/:</strong> contains two dockerfiles. <code>django</code> contains information for our Django server setup. <code>webpack</code> contains information to start our webpack watch plugin.</li>
+<li><strong>&lt;Django App>:</strong> currently we have two directories that are Django apps: <code>frontend/</code> and <code>server/</code>. Within these directories are the default <code>&lt;Django App Files&gt;</code> that are created with every app as well as <code>&lt;RESTFramework Files&gt;</code>.<ul>
+<li><strong>&lt;Django App Files>:</strong> These files make up a Django App. To know more about these apps, read the section about <a href="#django-app-files">Django App Files</a>.</li>
+<li><strong>&lt;RESTFramework Files>:</strong> Currently consists of only <code>serializers.py</code>, these files are additional files that support Django via the <a href="https://www.django-rest-framework.org/">DjangoRestFramework library</a>.</li>
+</ul>
+</li>
+<li><strong>.dockerignore:</strong> This file tells Docker to ignore certain files when building the container. These are usually files that pertain to docker or git, which are not important when building the webserver.</li>
+<li><strong>docker-compose.yml:</strong> Contains instructions for docker when we run "docker compose". To know more about what each line does, please consult <a href="https://docs.docker.com/compose/compose-file/">Docker's documentation</a>.</li>
+<li><strong>manage.py:</strong> Part of Django, this is the entry point file for starting the Django server. This file handles a lot of critical settings, so be sure to read up on it in <a href="https://docs.djangoproject.com/en/4.0/ref/django-admin/">Django's documentation</a>.</li>
+<li><strong>requirements.txt:</strong> A Python file that contains all dependencies for a project. It is the Python equivalent to Javascript's <code>package.json</code>.</li>
+</ul>
+<h2 id="docker">Docker</h2>
+<p>Docker is a platform that allows packaging and virtualizing applications within a container, giving it the powerful ability to collaborate in a stable, inter-developer environment, and deploying web applications with the greatest of ease. We will not be going too much into Docker here, but we will explain in greater depth some of the Docker configurations we have made.</p>
+<h3 id="docker-composeyml"><code>docker-compose.yml</code></h3>
+<p>This file contains configuration directions for docker compose. It consists of three services: pgdb (our database), webpack (our webpack bundler), and django (our django server). The webpack and django service relies in separate dockerfiles, located in the <code>docker</code> directory to build the container. This separation of dockerfiles enable each container to be build with its own set of dependencies. It also makes rebuilding the container simple when dependencies are migrated to a newer version.</p>
+<p>For those of you used to creating applications without Docker, most would run webpack and django in separate terminals, so that they can both run at the same time. For the purposes of brevity, the different services can be considered to be Docker's way of running separate terminals. </p>
+<p>One will also notice that the Django command uses a placeholder server name, 0.0.0.0:8000. This placeholder is important, since Docker creates an isolated environment. As a result, servers that are run in Docker does not recognize a browser from outside of that environment. Without this server name, localhost:8000 will not reach the server, as the server would recognize your browser as coming from a foreign machine. Therefore, all warnings related to 0.0.0.0, should they pop-up, should be ignored.</p>
+<h2 id="django-app-files">Django App Files</h2>
+<pre><code class="language-yml">├── migrations/
+│   └── __init__.py
+├── __init__.py
+├── admin.py
+├── apps.py
+├── models.py
+├── tests.py
+├── urls.py
+└── views.py
+</code></pre>
+<p><em><p style="text-align: center;">Files generated by Django when creating a new Django app</p></em></p>
+<p>As of right now, no specific changes have been made to these files, so please refer to <a href="https://docs.djangoproject.com/en/4.0/">Django's documentation</a> for now to learn what they do in a general sense.</p>
+<h2 id="django-rest-framework-files">Django REST Framework Files</h2>
+<pre><code class="language-yml">├── serializers.py
+</code></pre>
+<p><em><p style="text-align: center;">RESTFramework files used to create a Django REST API</p></em></p>
+<p>As of right now, no specific changes have been made to these files, so please refer to <a href="https://www.django-rest-framework.org/">DjangoRESTFramework's documentation</a> for now to learn what they do in a general sense.</p>
+<h2 id="useful-commands">Useful Commands</h2>
+<pre><code class="language-bash">docker exec -it &lt;container&gt; sh   # enter into the container's shell
+docker compose -f &lt;filename&gt; &lt;docker command&gt;    # used to specify an alternate docker-compose file
+docker compose run &lt;container&gt; &lt;command&gt; # used to run commands inside a container, such as an npm or pip command
+</code></pre>
+<h2 id="additional-resources">Additional Resources</h2>
+<p><a href="https://docs.docker.com/">Docker Documentation</a><br>
+<a href="https://docs.djangoproject.com/en/4.0/">Django 4.0 Documentation</a><br>
+<a href="https://www.django-rest-framework.org/">DjangoRestFramework Documentation</a><br></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../js/extra.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
