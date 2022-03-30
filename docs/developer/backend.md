@@ -98,6 +98,15 @@ As of right now, no specific changes have been made to these files, so please re
 
 As of right now, no specific changes have been made to these files, so please refer to [DjangoRESTFramework's documentation](https://www.django-rest-framework.org/) for now to learn what they do in a general sense.
 
+## Useful Commands
+
+```bash
+docker exec -it <container> sh   # enter into the container's shell
+docker compose -f <filename> <docker command>    # used to specify an alternate docker-compose file
+docker compose run <container> <command> # used to run commands inside a container, such as an npm or pip command
+```
+
+
 ## Additional Resources
 [Docker Documentation](https://docs.docker.com/)<br>
 [Django 4.0 Documentation](https://docs.djangoproject.com/en/4.0/)<br>
