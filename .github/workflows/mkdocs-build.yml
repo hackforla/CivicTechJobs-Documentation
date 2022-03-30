@@ -1,4 +1,5 @@
-name: Documentation
+# Credit for code: https://github.com/mkdocs/mkdocs/discussions/2369#discussioncomment-625475
+name: Build MkDocs site
 
 on:
   push:
