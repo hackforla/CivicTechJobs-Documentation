@@ -18,17 +18,11 @@
 │    ├── django.dockerfile
 │    ├── webpack.dockerfile
 │    └── dev.env
-├── stage/
-│    ├── django.dockerfile
-│    ├── nginx.dockerfile
-│    ├── stage.env
-│    └── nginx.conf
 ├── .dockerignore
 ├── .gitignore # Github
 ├── jsconfig.json
 ├── CONTRIBUTING.md # Github
 ├── docker-compose.yml
-├── docker-compose.stage.yml
 ├── LICENSE # Github
 └── README.md # Github
 ```
