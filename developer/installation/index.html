@@ -55,6 +55,10 @@
 </li>
             
 <li>
+    <a href="../devops/" class="dropdown-item">DevOps Architecture</a>
+</li>
+            
+<li>
     <a href="../development-culture/" class="dropdown-item">Development Culture</a>
 </li>
             
@@ -167,17 +171,30 @@ The macOS version of git involves downloading extra programs, such as Homebrew. 
 <ol>
 <li><a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository">Fork our repository.</a></li>
 <li><a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository">Clone our repository to a local version on your PC.</a></li>
-<li><a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo#configuring-git-to-sync-your-fork-with-the-original-repository">Configuring Git to sync your fork with the original repository.</a> When configuring, make sure to not blindly copy and paste the commands without making appropriate edits, especially when it involves your username or the repository name. </li>
+<li><a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo#configuring-git-to-sync-your-fork-with-the-original-repository">Configuring Git to sync your fork with the original repository.</a> When configuring, make sure to not blindly copy and paste the commands without making appropriate edits, especially when it involves your username or the repository name.</li>
 </ol>
 <h2 id="running-docker">Running Docker</h2>
 <ol>
 <li>Navigate to the root of our directory, <code>CivicTechJobs/</code>, in the terminal.</li>
-<li>In the root, create a file named, <code>secret_key.txt</code>.</li>
-<li>In this newly created file, input a secret key, either generated through <a href="https://docs.python.org/3/library/secrets.html#secrets.token_urlsafe">Python's secrets's library</a> or from an online key generator (don't worry, this is not used in production, only locally).</li>
+<li>In <code>dev/</code>, create a file named, <code>dev.env</code>.</li>
+<li>In this newly created file, copy and paste the contents of <code>dev.env.example</code>. Afterwards, you must edit the lines specified below.</li>
 <li>In the terminal enter <code>docker compose build</code> and wait for the build to finish.</li>
 <li>Then, enter <code>docker compose up</code> to run the local server.</li>
 <li>Visit http://localhost:8000/ and you should see the front page of our website!</li>
 </ol>
+<details>
+<summary>dev.env lines to edit</summary>
+<ul>
+   <li>POSTGRES_DB: a name for your database, such as `postgres`</li>
+   <li>POSTGRES_USER: a username for your database</li>
+   <li>POSTGRES_PASSWORD: a password for your database</li>
+   <li>SECRET_KEY: a random string of length 50. You can use your favorite secret key generator to achieve this. To learn more about how Django generate default keys, see [Python's secrets's library](https://docs.python.org/3/library/secrets.html#secrets.token_urlsafe).</li>
+   <li>SQL_DATABASE: same as POSTGRES_DB</li>
+   <li>SQL_USER: same as POSTGRES_USER</li>
+   <li>SQL_PASSWORD: same as POSTGRES_PASSWORD</li>
+</ul>
+</details>
+<p><br></p>
 <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
 <p>This section might answer some of the burning questions you have. If you cannot find it here, be sure to contact our team members or the development lead through our <a href="https://hackforla.slack.com/archives/C02509WHFQQ">Slack</a> or <a href="mailto:Civictechjobs@hackforla.org">email</a>.</p>
 <h3 id="troubleshooting-errors">Troubleshooting Errors</h3>

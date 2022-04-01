@@ -55,6 +55,10 @@
 </li>
             
 <li>
+    <a href="../devops/" class="dropdown-item">DevOps Architecture</a>
+</li>
+            
+<li>
     <a href="../development-culture/" class="dropdown-item">Development Culture</a>
 </li>
             
@@ -128,23 +132,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#docker" class="nav-link">Docker</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#docker-composeyml" class="nav-link">docker-compose.yml</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
             <li class="nav-item" data-level="2"><a href="#django-app-files" class="nav-link">Django App Files</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#django-rest-framework-files" class="nav-link">Django REST Framework Files</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#useful-commands" class="nav-link">Useful Commands</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -162,66 +154,54 @@
 <h1 id="backend-architecture">Backend Architecture</h1>
 <pre><code class="language-yml">├── .github/
 │   └── ISSUE_TEMPLATE/
-├── config/    # Backend
-├── docker/    # Backend
-├── frontend/    # Backend
-│   ├── migrations/    # Backend
-│   ├── src/
-│       ├── assets/
-│       ├── components/
-│       ├── pages/
-│       └── templates/
-│   ├── static/
-│       └── frontend/
-│   └── templates/
-│       └── frontend/
-├── server/    # Backend
-│   └── migrations/    # Backend
-└── &lt;loose files&gt;    # Backend
+├── app/ # Backend
+│    ├── config/  # Backend
+│          └── settings.py
+│    ├── frontend/ # Backend
+│    ├── server/  # Backend
+│    ├── .babelrc
+│    ├── manage.py
+│    ├── requirements.txt  # Backend
+│    ├── package.json
+│    ├── package-lock.json
+│    └── webpack.config.js
+├── dev/
+│    ├── django.dockerfile
+│    ├── webpack.dockerfile
+│    └── dev.env
+├── .dockerignore
+├── .gitignore
+├── jsconfig.json
+├── CONTRIBUTING.md
+├── docker-compose.yml
+├── LICENSE
+└── README.md
 </code></pre>
 <p><em><p style="text-align: center;">Overall project structure</p></em></p>
 <pre><code class="language-yml">├── config/
 │   ├── &lt;Django Project Files&gt;
-├── docker/
-│   ├── django
-│   └── webpack
 ├── frontend/
 │   └── &lt;Django App Files&gt;
 ├── server/
 │   ├── &lt;Django App Files&gt;
 │   └── &lt;RESTFramework Files&gt;
-├── .dockerignore
-├── docker-compose.yml
-├── manage.py 
-└── requirements.txt 
+├── manage.py
+└── requirements.txt
 </code></pre>
 <p><em><p style="text-align: center;">Backend Architecture</p></em></p>
 <h2 id="summary">Summary</h2>
-<p><strong>Backend Tech Stack</strong>: Django, DjangoRESTFramework, Docker</p>
+<p><strong>Backend Tech Stack</strong>: Django, DjangoRESTFramework</p>
 <p>The backend architecture is consists the <code>docker/</code> directory, the Django <code>config/</code> project, the <code>frontend/</code> and <code>server/</code> Django apps, and a couple of Django or Docker-related loose files. In addition to serving as part of our backend, the <code>frontend/</code> directory also serves our frontend architecture. More about the <code>frontend/</code> directory as it relates our frontend architecture can be found in our guide on <a href="../../developer/frontend/">Frontend Architecture</a>.</p>
 <h2 id="overview-of-directories-and-files">Overview of Directories and Files</h2>
 <ul>
-<li><strong>config/:</strong> houses the Django project files.<ul>
+<li><strong>config/:</strong> houses the Django project files.</li>
 <li><strong>&lt;Django Project Files>:</strong> More on the files in this directory can be found in <a href="https://docs.djangoproject.com/en/4.0/">Django's documentation</a>.</li>
-</ul>
-</li>
-<li><strong>docker/:</strong> contains two dockerfiles. <code>django</code> contains information for our Django server setup. <code>webpack</code> contains information to start our webpack watch plugin.</li>
-<li><strong>&lt;Django App>:</strong> currently we have two directories that are Django apps: <code>frontend/</code> and <code>server/</code>. Within these directories are the default <code>&lt;Django App Files&gt;</code> that are created with every app as well as <code>&lt;RESTFramework Files&gt;</code>.<ul>
+<li><strong>&lt;Django App>:</strong> currently we have two directories that are Django apps: <code>frontend/</code> and <code>server/</code>. Within these directories are the default <code>&lt;Django App Files&gt;</code> that are created with every app as well as <code>&lt;RESTFramework Files&gt;</code>.</li>
 <li><strong>&lt;Django App Files>:</strong> These files make up a Django App. To know more about these apps, read the section about <a href="#django-app-files">Django App Files</a>.</li>
 <li><strong>&lt;RESTFramework Files>:</strong> Currently consists of only <code>serializers.py</code>, these files are additional files that support Django via the <a href="https://www.django-rest-framework.org/">DjangoRestFramework library</a>.</li>
-</ul>
-</li>
-<li><strong>.dockerignore:</strong> This file tells Docker to ignore certain files when building the container. These are usually files that pertain to docker or git, which are not important when building the webserver.</li>
-<li><strong>docker-compose.yml:</strong> Contains instructions for docker when we run "docker compose". To know more about what each line does, please consult <a href="https://docs.docker.com/compose/compose-file/">Docker's documentation</a>.</li>
 <li><strong>manage.py:</strong> Part of Django, this is the entry point file for starting the Django server. This file handles a lot of critical settings, so be sure to read up on it in <a href="https://docs.djangoproject.com/en/4.0/ref/django-admin/">Django's documentation</a>.</li>
 <li><strong>requirements.txt:</strong> A Python file that contains all dependencies for a project. It is the Python equivalent to Javascript's <code>package.json</code>.</li>
 </ul>
-<h2 id="docker">Docker</h2>
-<p>Docker is a platform that allows packaging and virtualizing applications within a container, giving it the powerful ability to collaborate in a stable, inter-developer environment, and deploying web applications with the greatest of ease. We will not be going too much into Docker here, but we will explain in greater depth some of the Docker configurations we have made.</p>
-<h3 id="docker-composeyml"><code>docker-compose.yml</code></h3>
-<p>This file contains configuration directions for docker compose. It consists of three services: pgdb (our database), webpack (our webpack bundler), and django (our django server). The webpack and django service relies in separate dockerfiles, located in the <code>docker</code> directory to build the container. This separation of dockerfiles enable each container to be build with its own set of dependencies. It also makes rebuilding the container simple when dependencies are migrated to a newer version.</p>
-<p>For those of you used to creating applications without Docker, most would run webpack and django in separate terminals, so that they can both run at the same time. For the purposes of brevity, the different services can be considered to be Docker's way of running separate terminals. </p>
-<p>One will also notice that the Django command uses a placeholder server name, 0.0.0.0:8000. This placeholder is important, since Docker creates an isolated environment. As a result, servers that are run in Docker does not recognize a browser from outside of that environment. Without this server name, localhost:8000 will not reach the server, as the server would recognize your browser as coming from a foreign machine. Therefore, all warnings related to 0.0.0.0, should they pop-up, should be ignored.</p>
 <h2 id="django-app-files">Django App Files</h2>
 <pre><code class="language-yml">├── migrations/
 │   └── __init__.py
@@ -240,14 +220,8 @@
 </code></pre>
 <p><em><p style="text-align: center;">RESTFramework files used to create a Django REST API</p></em></p>
 <p>As of right now, no specific changes have been made to these files, so please refer to <a href="https://www.django-rest-framework.org/">DjangoRESTFramework's documentation</a> for now to learn what they do in a general sense.</p>
-<h2 id="useful-commands">Useful Commands</h2>
-<pre><code class="language-bash">docker exec -it &lt;container&gt; sh   # enter into the container's shell
-docker compose -f &lt;filename&gt; &lt;docker command&gt;    # used to specify an alternate docker-compose file
-docker compose run &lt;container&gt; &lt;command&gt; # used to run commands inside a container, such as an npm or pip command
-</code></pre>
 <h2 id="additional-resources">Additional Resources</h2>
-<p><a href="https://docs.docker.com/">Docker Documentation</a><br>
-<a href="https://docs.djangoproject.com/en/4.0/">Django 4.0 Documentation</a><br>
+<p><a href="https://docs.djangoproject.com/en/4.0/">Django 4.0 Documentation</a><br>
 <a href="https://www.django-rest-framework.org/">DjangoRestFramework Documentation</a><br></p></div>
             </div>
         </div>
