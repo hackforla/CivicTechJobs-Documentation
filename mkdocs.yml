@@ -20,6 +20,7 @@ nav:
           - CONTRIBUTING.md: https://github.com/hackforla/CivicTechJobs/blob/main/CONTRIBUTING.md#welcome-to-the-civictechjobs-contributing-guide
           - Backend Architecture: developer/backend.md
           - Design System Helper: developer/design-system.md
+          - DevOps Architecture: developer/devops.md
           - Development Culture: developer/development-culture.md
           - Frontend Architecture: developer/frontend.md
           - GitHub Architecture: developer/github.md

@@ -1,37 +1,44 @@
 # GitHub Architecture
 
 ```yml
-├── .github/    # GitHub
-│   └── ISSUE_TEMPLATE/    #GitHub
-├── config/
-├── docker/
-├── frontend/
-│   ├── migrations/
-│   ├── src/
-│       ├── assets/
-│       ├── components/
-│       ├── pages/
-│       └── templates/
-│   ├── static/
-│       └── frontend/
-│   └── templates/
-│       └── frontend/
-├── server/
-│   └── migrations/
-└── <loose files>    # GitHub
+├── .github/ # Github
+│   └── ISSUE_TEMPLATE/
+├── app/
+│    ├── config/
+│          └── settings.py
+│    ├── frontend/
+│    ├── server/
+│    ├── .babelrc
+│    ├── manage.py
+│    ├── requirements.txt
+│    ├── package.json
+│    ├── package-lock.json
+│    └── webpack.config.js
+├── dev/
+│    ├── django.dockerfile
+│    ├── webpack.dockerfile
+│    └── dev.env
+├── .dockerignore
+├── .gitignore # Github
+├── jsconfig.json
+├── CONTRIBUTING.md # Github
+├── docker-compose.yml
+├── LICENSE # Github
+└── README.md # Github
 ```
-*<p style="text-align: center;">Overall project structure</p>*
 
+_<p style="text-align: center;">Overall project structure</p>_
 
 ```yml
 ├── .github/
 │   └── ISSUE_TEMPLATE/
 ├── .gitignore
+├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md/
 ```
-*<p style="text-align: center;">GitHub structure</p>*
 
+_<p style="text-align: center;">GitHub structure</p>_
 
 ## Summary
 
