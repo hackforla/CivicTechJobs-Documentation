@@ -35,7 +35,7 @@ The macOS version of git involves downloading extra programs, such as Homebrew. 
 <ul>
    <li>POSTGRES_DB: a name for your database, such as `postgres`</li>
    <li>POSTGRES_USER: a username for your database</li>
-   <li>POSTGRES_PASSWORD: a passwor for your database</li>
+   <li>POSTGRES_PASSWORD: a password for your database</li>
    <li>SECRET_KEY: a random string of length 50. You can use your favorite secret key generator to achieve this. To learn more about how Django generate default keys, see [Python's secrets's library](https://docs.python.org/3/library/secrets.html#secrets.token_urlsafe).</li>
    <li>SQL_DATABASE: same as POSTGRES_DB</li>
    <li>SQL_USER: same as POSTGRES_USER</li>
