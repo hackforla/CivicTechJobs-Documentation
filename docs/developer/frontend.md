@@ -3,23 +3,34 @@
 ```yml
 ├── .github/
 │   └── ISSUE_TEMPLATE/
-├── config/
-├── docker/
-├── frontend/    # Frontend
-│   ├── migrations/
-│   ├── src/    # Frontend
-│       ├── assets/    # Frontend
-│       ├── components/    # Frontend
-│       ├── pages/    # Frontend
-│       ├── router/    # Frontend
-│       └── templates/    # Frontend
-│   ├── static/    # Frontend
-│       └── frontend/    # Frontend
-│   └── templates/    # Frontend
-│       └── frontend/    # Frontend
-├── server/
-│   └── migrations/
-└── <loose files> # Frontend
+├── app/
+│    ├── config/
+│          └── settings.py
+│    ├── frontend/ # Frontend
+│    ├── server/
+│    ├── .babelrc # Frontend
+│    ├── manage.py
+│    ├── requirements.txt
+│    ├── package.json # Frontend
+│    ├── package-lock.json # Frontend
+│    └── webpack.config.js # Frontend
+├── dev/
+│    ├── django.dockerfile
+│    ├── webpack.dockerfile
+│    └── dev.env
+├── stage/
+│    ├── django.dockerfile
+│    ├── nginx.dockerfile
+│    ├── stage.env
+│    └── nginx.conf
+├── .dockerignore
+├── .gitignore
+├── jsconfig.json
+├── CONTRIBUTING.md
+├── docker-compose.yml
+├── docker-compose.stage.yml
+├── LICENSE
+└── README.md
 ```
 
 _<p style="text-align: center;">Overall project structure</p>_
